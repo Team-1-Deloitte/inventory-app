@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { SaucesList } from './SaucesList';
 import { ItemsList } from './ItemsList';
+import { Item } from './Item';
 
 // import and prepend the api url to any fetch calls
 import apiURL from '../api';
 
-export const App = () => {
+export const App = (props) => {
   const [sauces, setSauces] = useState([]);
   const [items, setItems] = useState([]);
 
@@ -34,14 +35,25 @@ export const App = () => {
     fetchItems();
   }, []);
 
+  const [isOpen, setIsOpen] = useState(false);
+  const handleClick = () => setIsOpen(!isOpen);
+  console.log(props)
+
   return (
     <main>
       <h1>Sauce Store</h1>
       <h2>All things 🔥</h2>
       <SaucesList sauces={sauces} />
-      <h1>Items Store</h1>
-      <h2>All things</h2>
-      <ItemsList items={items} />
+
+      <h1 onClick={handleClick}>Items Store</h1>
+      {isOpen && <>
+        <h4>Click on an item to see more details</h4>
+        <div>
+          {items.map((item, index) => (
+          <p key={index}>{item.name}</p>
+          ))}
+        </div>
+      </>}
     </main>
   )
 }
