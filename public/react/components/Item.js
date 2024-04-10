@@ -25,6 +25,19 @@ export const Item = (props) => {
   }
 }
 
+//delete item function here
+const handleDelete = async (id) => {
+  try{ 
+    const response = await fetch(`/api/items/${id}`, {
+      method: 'DELETE'
+    });
+  if (!response.ok)
+  }
+}
+
+
+
+
 return (
   <>
     <h3>{props.item.name}</h3>
