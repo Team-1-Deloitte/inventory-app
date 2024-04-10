@@ -25,7 +25,7 @@ export const Item = (props) => {
   }
 }
 
-//delete item function here
+//delete item request function here
 const handleDelete = async (id) => {
   try{ 
     const response = await fetch(`/api/items/${id}`, {
@@ -41,8 +41,7 @@ const handleDelete = async (id) => {
   console.error(error);
 }
 
-
-  };
+ };
 
 
 
@@ -56,25 +55,5 @@ return (
     <img src={props.item.image} alt={props.item.name} />
     <button> Add Item </button>
 
-    <form onSubmit={handleSubmit}>
-      <input
-        type='text'
-        value={newItem.name}
-        onChange={(e) => setNewItem({ ...newItem, name: e.target.value })}
-      />
-      <input
-        type='text'
-        value={newItem.image}
-        onChange={(e) => setNewItem({ ...newItem, image: e.target.value })}
-      />
-      <input
-        type='text'
-        value={newItem.body}
-        onChange={(e) => setNewItem({ ...newItem, body: e.target.value })}
-      />
-
-      <input type={string} value={props.item.body}></input>
-      <input type='string' value={props.item.body} />
-    </form>
   </>
 )
