@@ -64,9 +64,9 @@ export const App = (props) => {
 
   return (
     <main>
-      <h1>Sauce Store</h1>
+      {/* <h1>Sauce Store</h1>
       <h2>All things 🔥</h2>
-      <SaucesList sauces={sauces} />
+      <SaucesList sauces={sauces} /> */}
       <h1 onClick={handleClick}>Items Store</h1>
       {isOpen && (
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -98,7 +98,7 @@ export const App = (props) => {
           )}
         </div>
       )}
-      <div>
+      {/* <div>
         <form onSubmit={handleSubmit}>
           {' '}
           <label>
@@ -111,7 +111,7 @@ export const App = (props) => {
             />
           </label>{' '}
         </form>
-      </div>
+      </div> */}
       <Form />
     </main>
   )
