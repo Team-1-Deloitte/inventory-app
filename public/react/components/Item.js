@@ -31,8 +31,13 @@ const handleDelete = async (id) => {
     const response = await fetch(`/api/items/${id}`, {
       method: 'DELETE'
     });
-  if (!response.ok)
+  if (!response.ok) {
+    throw new Error('failed to add the item');
   }
+   
+  }
+
+
 }
 
 
