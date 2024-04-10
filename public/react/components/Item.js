@@ -34,11 +34,18 @@ const handleDelete = async (id) => {
   if (!response.ok) {
     throw new Error('failed to add the item');
   }
-   
-  }
-
-
+  
+  const data = await response.json();
+  console.log(data);
+} catch (error) {
+  console.error(error);
 }
+
+
+  };
+
+
+
 
 
 
