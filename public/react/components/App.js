@@ -110,6 +110,7 @@ export const App = (props) => {
           )}
         </div>
       )}
+
       <div>
         <form onSubmit={handleSubmit}>
           {' '}
@@ -124,6 +125,7 @@ export const App = (props) => {
           </label>{' '}
         </form>
       </div>
+
       <Form />
     </main>
   )
