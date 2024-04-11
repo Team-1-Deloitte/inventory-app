@@ -23,7 +23,7 @@ export const Item = (props) => {
       console.error(error)
     }
   }
-}
+
 
 //delete item request function here
 const handleDelete = async (id) => {
@@ -54,6 +54,8 @@ return (
     <h3>{props.item.name}</h3>
     <img src={props.item.image} alt={props.item.name} />
     <button> Add Item </button>
-
   </>
-)
+  )
+}
+
+
