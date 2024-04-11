@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 
-const Form = ({ onSubmit, deleteItem, addItem, item }) => {
+const Form = ({ onSubmit, addItem, item }) => {
+  const deleteItem = (itemToDelete) => {
+    setItems(items.filter(item => item.id !== itemToDelete.id)) // This assumes each item has a unique id
+  }
   const [newItem, setNewItem] = useState({ name: '', image: '', body: '' })
   const [formData, setFormData] = useState({
     name: '',
@@ -17,18 +20,17 @@ const Form = ({ onSubmit, deleteItem, addItem, item }) => {
 
   const handleFormSubmit = (event) => {
     event.preventDefault()
-    onSubmit(formData)
+    console.log('Form data:', formData) // Log form data
+    if (typeof onSubmit === 'function') {
+      onSubmit(formData)
+    } else {
+      console.error('onSubmit is not a function:', onSubmit) // Log error if onSubmit is not a function
+    }
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    setNewItem(newItem)
-  }
-
-
-return (
-  <form className="form" onSubmit={handleFormSubmit} >
-    <p>Name</p>
+  return (
+    <form className="form" onSubmit={handleFormSubmit} >
+      <p>Name</p>
     <input
       name='name'
       type='text'
@@ -59,16 +61,18 @@ return (
       value={formData.category}
       onChange= {(e)=>handleChange(e)}
     />
+    <p>image url</p>
     <input
       name='imageUrl'
       type='text'
       value={formData.imageUrl}
       onChange= {(e)=>handleChange(e)}
     />
-    <button type='submit'>Submit</button>
-    <button onClick={() => addItem(item)}> Add Item </button>
-  </form>
-)
+      {/* <button type='submit'>Submit</button> */}
+      <button onClick={() => addItem(formData)}> Add Item </button>
+      <button onClick={() => deleteItem(formData)}> Remove Item </button>
+    </form>
+  )
 }
 
 export default Form
