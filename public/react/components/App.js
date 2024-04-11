@@ -118,7 +118,7 @@ async function addItem(itemsData) {
           ))} */}
           </div>}
       </div>}
-    <Form addItem={addItem} />  
+   
     </main>
   )
 }
