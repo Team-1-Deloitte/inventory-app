@@ -1,30 +1,17 @@
 import React, { useState, useEffect } from 'react'
-import { SaucesList } from './SaucesList'
-import { ItemsList } from './ItemsList'
 import Form from './Form'
-import Item from './Item'
 
 // import and prepend the api url to any fetch calls
 import apiURL from '../api'
 
 export const App = (props) => {
-  const [sauces, setSauces] = useState([])
+  const [setSauces] = useState([])
   const [items, setItems] = useState([])
   // const [viewItemId, setViewedItemId] = useState(null)
   // const [newItem, setNewItem] = useState({ name: '', image: '', body: '' })
   const [selectedItem, setSelectedItem] = useState(null)
 
   // need to define a viewDetails function for the event handler to work
-  async function viewDetails(id) {
-    try {
-      const response = await fetch(`${apiURL}/items${id}`)
-      const item = await response.json()
-
-      setViewedItemId(item)
-    } catch (err) {
-      console.log('Could not view item', err)
-    }
-  }
 
   // need delete function here for event handler to work
   const deleteItem = async (itemId) => {
@@ -101,16 +88,16 @@ export const App = (props) => {
       />
       {isOpen && (
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <div class='items'>
-            <h4>Click on an item to see more details</h4>
-            {items.map((item, index) => (
-              <p key={index} onClick={() => handleItemClick(item)}>
-                {item.name}
-              </p>
-            ))}
-          </div>
+          <div className='items'>
+  <h4>Click on an item to see more details</h4>
+  {items.map((item, index) => (
+    <button key={item.id} onClick={() => handleItemClick(item)}>
+      {item.name}
+    </button>
+  ))}
+</div>
           {selectedItem && (
-            <div class='items-details'>
+            <div className='items-details'>
               <h4>Details:</h4>
               <p>{selectedItem.name}</p>
               <p>{selectedItem.category}</p>
@@ -123,9 +110,6 @@ export const App = (props) => {
                 width='200px'
                 height='200'
               />
-              {/* {Object.entries(selectedItem).map(([key, value]) => (
-            <p key={key}>{key}: {value}</p>
-          ))} */}
             </div>
           )}
         </div>
