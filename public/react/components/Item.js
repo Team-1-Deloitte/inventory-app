@@ -1,19 +1,23 @@
 import React from 'react'
 
-const Item = ({ item, deleteItem, viewDetails, addItem }) => {
+
+const Item = ({ itemData, handleDelete, handleViewDetails, handleAddToCart }) => {
+  const { name, description, price, category, image } = itemData;
+
   return (
-    <div className = "item" >
-      <h3>{item.name}</h3>
-      <p>{item.description}</p>
-      <p>Price: ${item.price}</p>
-      <p>Category: {item.category}</p>
-      <img src={item.image} alt={item.name} />
-      <button >View Details</button>{' '}
-      <button onClick={() => deleteItem(item.id)}> Delete Item </button>
-      {/* Add a button to view details of the item */}
-      
+    <div className="item">
+      <h3>{name}</h3>
+      <p>{description}</p>
+      <p>Price: ${price}</p>
+      <p>Category: {category}</p>
+      <img src={image} alt={name} />
+      <div className="item-buttons">
+        <button onClick={() => handleViewDetails(itemData.id)}>View Details</button>
+        <button onClick={() => handleDelete(itemData.id)}>Delete Item</button>
+        <button onClick={() => handleAddToCart(itemData)}>Add to Cart</button>
+      </div>
     </div>
-  )
-}
+  );
+};
 
 export default Item
