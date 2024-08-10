@@ -1,11 +1,9 @@
-const Item = require('./Item')
+const Item = require('../components/Item')
+const item = { name: ''}
 
-beforeAll(() => {
-    
-});
-
-describe('Item Component test', () => { 
-    test('should be a string', () => { 
-        expect(typeof Item.name).toBe('string')
-     })
-});
+// User tests here
+describe('Item property tests', () => {
+  // test username
+  test('name should be a string', () => {
+    expect(typeof item.name).toBe('string')
+  })});
