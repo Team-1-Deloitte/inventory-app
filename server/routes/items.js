@@ -1,9 +1,10 @@
 const express = require('express')
 const router = express.Router()
 const { Item } = require('../models')
+const authenticate = require('../middleware/auth')
 
 // GET /item
-router.get('/', async (req, res, next) => {
+router.get('/', authenticate, async (req, res, next) => {
   try {
     const items = await Item.findAll()
     res.send(items)
