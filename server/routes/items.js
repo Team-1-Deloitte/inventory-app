@@ -6,21 +6,28 @@ const generateToken = require('./token')
 
 // Implement authentication middleware
 const authenticate = async (req, res, next) => {
-  const token = req.header('Authorization').replace('Bearer ', '')
-  console.log('Received token:', token)
+  const authHeader = req.header('Authorization');
+  if (!authHeader) {
+    return res.status(401).send({ error: 'Please authenticate.' });
+  }
+
+  const token = authHeader.replace('Bearer ', '');
+  console.log('Received token:', token);
+
   if (!token) {
-    return res.status(401).send({ error: 'Please authenticate.' })
+    return res.status(401).send({ error: 'Token not found.' });
   }
+
   try {
-    const decoded = jwt.verify(token, process.env.SECRET_KEY)
-    console.log('Decoded token:', decoded)
-    req.user = decoded
-    next()
+    const decoded = jwt.verify(token, process.env.SECRET_KEY);
+    console.log('Decoded token:', decoded);
+    req.user = decoded;
+    next();
   } catch (error) {
-    console.error('Error verifying token:', error)
-    return res.status(401).send({ error: 'Invalid token.' })
+    console.error('Error verifying token:', error);
+    return res.status(401).send({ error: 'Invalid token.' });
   }
-}
+};
 
 // Define a sample user ID
 const userID = 1
