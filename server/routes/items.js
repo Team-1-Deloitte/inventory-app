@@ -27,8 +27,8 @@ const userID = 1
 
 // Generate a token
 router.get('/test', (req, res) => {
-  const token = generateToken(userID)
-  console.log('Generated token:', token)
+  const token = generateToken(userID);
+  console.log('Generated token:', token);
   res.send({ token: token, message: 'This is the test endpoint!' });
 })
 
