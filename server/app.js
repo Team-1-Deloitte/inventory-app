@@ -5,6 +5,7 @@ const app = express();
 const morgan = require('morgan');
 const path = require('path');
 const cors = require('cors');
+const itemsRouter = require('./routes/items');
 
 //Allow CORS requests
 app.use(cors());
@@ -18,7 +19,8 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, '../dist')));
 
 // api router
-app.use('/api', require('./routes'));
+console.log('Registering /api routes');
+app.use('/api', itemsRouter);
 
 // 404 handler
 app.use((req, res) => {
